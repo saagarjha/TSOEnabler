@@ -11,10 +11,10 @@
 #include <sys/sysctl.h>
 #include <sys/systm.h>
 
-#define TSO_OFFSET 0x4e0
+#define TSO_OFFSET 0x4e8
 
-#define unslid_printf 0xfffffe0007228040
-#define unslid_thread_bind_cluster_type 0xfffffe0007238904
+#define unslid_printf 0xfffffe000723bfd4
+#define unslid_thread_bind_cluster_type 0xfffffe000724c894
 
 static void (*thread_bind_cluster_type)(thread_t, char);
 
