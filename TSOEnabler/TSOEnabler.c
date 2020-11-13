@@ -13,8 +13,8 @@
 
 #define TSO_OFFSET 0x4e8
 
-#define unslid_printf 0xfffffe000724ccb0
-#define unslid_thread_bind_cluster_type 0xfffffe000725d7c0
+#define unslid_printf 0xfffffe000724ccb4
+#define unslid_thread_bind_cluster_type 0xfffffe000725d7c4
 
 static void (*thread_bind_cluster_type)(thread_t, char);
 
