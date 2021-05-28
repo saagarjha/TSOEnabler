@@ -18,4 +18,4 @@ After that try installing the kernel extension again.
 
 ## Usage
 
-Load the kernel extension with `sudo kextload /Library/Extensions/TSOEnabler.kext`. After that, the `kern.tso_enable` sysctl will be made available to you to read or write. For the reasons described above, you must enable this for all threads of your application if you would like it to work; doing so will also pin these to the high-performance cores of your processor.
+Load the kernel extension with `sudo kextload /Library/Extensions/TSOEnabler.kext`. After that, the `kern.tso_enable` sysctl will be made available to you to read or write. For the reasons described above, you must enable this for all threads of your application if you would like it to work; doing so will also pin these to the high-performance cores of your processor. [A shared library](https://github.com/saagarjha/TSOEnabler/blob/master/enabletso/enabletso.c) that interposes pthreads to automatically enable TSO is also provided for convenience.

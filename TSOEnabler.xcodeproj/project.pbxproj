@@ -8,16 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		49758CCA24D2701800315D38 /* TSOEnabler.c in Sources */ = {isa = PBXBuildFile; fileRef = 49758CC924D2701800315D38 /* TSOEnabler.c */; };
+		499A21982660F97400D85600 /* enabletso.c in Sources */ = {isa = PBXBuildFile; fileRef = 499A21972660F97400D85600 /* enabletso.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		49758CC624D2701800315D38 /* TSOEnabler.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TSOEnabler.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		49758CC924D2701800315D38 /* TSOEnabler.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = TSOEnabler.c; sourceTree = "<group>"; };
 		49758CCB24D2701800315D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		499A21922660F95000D85600 /* libenabletso.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libenabletso.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		499A21972660F97400D85600 /* enabletso.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = enabletso.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		49758CC324D2701800315D38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		499A21902660F95000D85600 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -31,6 +41,7 @@
 			isa = PBXGroup;
 			children = (
 				49758CC824D2701800315D38 /* TSOEnabler */,
+				499A21962660F95500D85600 /* enabletso */,
 				49758CC724D2701800315D38 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -39,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				49758CC624D2701800315D38 /* TSOEnabler.kext */,
+				499A21922660F95000D85600 /* libenabletso.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -52,10 +64,25 @@
 			path = TSOEnabler;
 			sourceTree = "<group>";
 		};
+		499A21962660F95500D85600 /* enabletso */ = {
+			isa = PBXGroup;
+			children = (
+				499A21972660F97400D85600 /* enabletso.c */,
+			);
+			path = enabletso;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
 		49758CC124D2701800315D38 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		499A218E2660F95000D85600 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -83,6 +110,23 @@
 			productReference = 49758CC624D2701800315D38 /* TSOEnabler.kext */;
 			productType = "com.apple.product-type.kernel-extension";
 		};
+		499A21912660F95000D85600 /* enabletso */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 499A21952660F95000D85600 /* Build configuration list for PBXNativeTarget "enabletso" */;
+			buildPhases = (
+				499A218E2660F95000D85600 /* Headers */,
+				499A218F2660F95000D85600 /* Sources */,
+				499A21902660F95000D85600 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = enabletso;
+			productName = enabletso;
+			productReference = 499A21922660F95000D85600 /* libenabletso.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -93,6 +137,9 @@
 				TargetAttributes = {
 					49758CC524D2701800315D38 = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					499A21912660F95000D85600 = {
+						CreatedOnToolsVersion = 12.5;
 					};
 				};
 			};
@@ -110,6 +157,7 @@
 			projectRoot = "";
 			targets = (
 				49758CC524D2701800315D38 /* TSOEnabler */,
+				499A21912660F95000D85600 /* enabletso */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +178,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				49758CCA24D2701800315D38 /* TSOEnabler.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		499A218F2660F95000D85600 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				499A21982660F97400D85600 /* enabletso.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +343,34 @@
 			};
 			name = Release;
 		};
+		499A21932660F95000D85600 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X4A9GH5NN2;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		499A21942660F95000D85600 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X4A9GH5NN2;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -304,6 +388,15 @@
 			buildConfigurations = (
 				49758CCF24D2701800315D38 /* Debug */,
 				49758CD024D2701800315D38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		499A21952660F95000D85600 /* Build configuration list for PBXNativeTarget "enabletso" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				499A21932660F95000D85600 /* Debug */,
+				499A21942660F95000D85600 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
