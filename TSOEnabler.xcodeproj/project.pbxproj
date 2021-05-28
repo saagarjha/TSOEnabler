@@ -7,11 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49311DE726610A0000F825FC /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 49311DE626610A0000F825FC /* main.c */; };
 		49758CCA24D2701800315D38 /* TSOEnabler.c in Sources */ = {isa = PBXBuildFile; fileRef = 49758CC924D2701800315D38 /* TSOEnabler.c */; };
 		499A21982660F97400D85600 /* enabletso.c in Sources */ = {isa = PBXBuildFile; fileRef = 499A21972660F97400D85600 /* enabletso.c */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		49311DE226610A0000F825FC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		49311DE426610A0000F825FC /* testtso */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testtso; sourceTree = BUILT_PRODUCTS_DIR; };
+		49311DE626610A0000F825FC /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		49758CC624D2701800315D38 /* TSOEnabler.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TSOEnabler.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		49758CC924D2701800315D38 /* TSOEnabler.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = TSOEnabler.c; sourceTree = "<group>"; };
 		49758CCB24D2701800315D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -20,6 +35,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		49311DE126610A0000F825FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49758CC324D2701800315D38 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -37,11 +59,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49311DE526610A0000F825FC /* testtso */ = {
+			isa = PBXGroup;
+			children = (
+				49311DE626610A0000F825FC /* main.c */,
+			);
+			path = testtso;
+			sourceTree = "<group>";
+		};
 		49758CBC24D2701800315D38 = {
 			isa = PBXGroup;
 			children = (
 				49758CC824D2701800315D38 /* TSOEnabler */,
 				499A21962660F95500D85600 /* enabletso */,
+				49311DE526610A0000F825FC /* testtso */,
 				49758CC724D2701800315D38 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +82,7 @@
 			children = (
 				49758CC624D2701800315D38 /* TSOEnabler.kext */,
 				499A21922660F95000D85600 /* libenabletso.dylib */,
+				49311DE426610A0000F825FC /* testtso */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +124,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		49311DE326610A0000F825FC /* testtso */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49311DEA26610A0000F825FC /* Build configuration list for PBXNativeTarget "testtso" */;
+			buildPhases = (
+				49311DE026610A0000F825FC /* Sources */,
+				49311DE126610A0000F825FC /* Frameworks */,
+				49311DE226610A0000F825FC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = testtso;
+			productName = testtso;
+			productReference = 49311DE426610A0000F825FC /* testtso */;
+			productType = "com.apple.product-type.tool";
+		};
 		49758CC524D2701800315D38 /* TSOEnabler */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49758CCE24D2701800315D38 /* Build configuration list for PBXNativeTarget "TSOEnabler" */;
@@ -135,6 +184,9 @@
 			attributes = {
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					49311DE326610A0000F825FC = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					49758CC524D2701800315D38 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -158,6 +210,7 @@
 			targets = (
 				49758CC524D2701800315D38 /* TSOEnabler */,
 				499A21912660F95000D85600 /* enabletso */,
+				49311DE326610A0000F825FC /* testtso */,
 			);
 		};
 /* End PBXProject section */
@@ -173,6 +226,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		49311DE026610A0000F825FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49311DE726610A0000F825FC /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49758CC224D2701800315D38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,6 +253,28 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		49311DE826610A0000F825FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X4A9GH5NN2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		49311DE926610A0000F825FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X4A9GH5NN2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		49758CCC24D2701800315D38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -374,6 +457,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		49311DEA26610A0000F825FC /* Build configuration list for PBXNativeTarget "testtso" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49311DE826610A0000F825FC /* Debug */,
+				49311DE926610A0000F825FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		49758CC024D2701800315D38 /* Build configuration list for PBXProject "TSOEnabler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
