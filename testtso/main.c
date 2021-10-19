@@ -19,6 +19,8 @@ void *writer(void *unused) {
 	while (true) {
 		for (size_t i = 0; i < sizeof(data) / sizeof(*data); ++i) {
 			atomic_fetch_add_explicit(data + i, 1, memory_order_relaxed);
+			// https://bugs.llvm.org/show_bug.cgi?id=50564
+//			atomic_signal_fence(memory_order_acq_rel);
 		}
 		atomic_fetch_add_explicit(&barrier, 1, memory_order_release);
 	}
@@ -31,6 +33,8 @@ void *reader(void *unused) {
 	while (true) {
 		for (size_t i = 0; i < sizeof(data) / sizeof(*data) - 1; ++i) {
 			unsigned int value2 = atomic_load_explicit(data + i + 1, memory_order_relaxed);
+			// https://bugs.llvm.org/show_bug.cgi?id=50564
+//			atomic_signal_fence(memory_order_acq_rel);
 			unsigned int value1 = atomic_load_explicit(data + i, memory_order_relaxed);
 			if (value1 < value2) {
 				exit(0);
