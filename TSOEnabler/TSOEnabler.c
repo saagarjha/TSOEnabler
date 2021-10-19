@@ -8,6 +8,7 @@
 #include <libkern/libkern.h>
 #include <mach-o/loader.h>
 #include <mach/mach_types.h>
+#include <ptrauth.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <string.h>
@@ -26,49 +27,26 @@ static int tso_offset = -1;
 
 static int find_tso_offset_in_text_exec(char *text_exec, uint64_t text_exec_size) {
 	// Look for this sequence:
-	// mrs xR, tpidr_el1
 	// ldr xR, [xR, #OFFSET]
-	// ...small number of instructions...
+	// cbz xR, location
 	// mrs xR, actlr_el1
 	// xR, xR, #0x2
 	// xR, xR, #0x70
-
-	// First, find the last three instructions
-	uint32_t *actlr_read = NULL;
 	uint32_t *instructions = (uint32_t *)text_exec;
-	for (uint64_t i = 0; i < text_exec_size / sizeof(uint32_t) - 3; ++i) {
-		if ((instructions[i + 0] & 0xffffffe0) == 0xd5381020 &&
-			(instructions[i + 1] & 0xfffffc00) == 0xb27f0000 &&
-			(instructions[i + 2] & 0xfffffc00) == 0xb27c0800) {
-			actlr_read = instructions + i;
-			break;
+	for (uint64_t i = 0; i < text_exec_size / sizeof(uint32_t) - 5; ++i) {
+		if ((instructions[i + 0] & 0xffc00000) == 0xf9400000 &&
+			(instructions[i + 1] & 0x2f000000) == 0x24000000 &&
+			(instructions[i + 2] & 0xffffffe0) == 0xd5381020 &&
+			(instructions[i + 3] & 0xfffffc00) == 0xb27f0000 &&
+			(instructions[i + 4] & 0xfffffc00) == 0xb27c0800) {
+			printf("TSOEnabler: Found thread pointer read at %p\n", instructions + i);
+			// Extract the immediate from the ldr.
+			int tso_offset = (instructions[i] >> 10 & 0xfff) << 3;
+			printf("TSOEnabler: TSO offset is %d\n", tso_offset);
+			return tso_offset;
 		}
 	}
-	if (!actlr_read) {
-		return -1;
-	}
-	printf("TSOEnabler: found actlr read at %p\n", actlr_read);
-
-	// Go up a few instructions to find the thread pointer read
-	uint32_t *thread_pointer_read = NULL;
-	int distance = 10;
-	instructions = actlr_read - distance;
-	for (int i = 0; i < distance; ++i) {
-		if ((instructions[i + 0] & 0xffffffe0) == 0xd538d080 &&
-			(instructions[i + 1] & 0xffc00000) == 0xf9400000) {
-			thread_pointer_read = instructions + i + 1;
-			break;
-		}
-	}
-	if (!thread_pointer_read) {
-		return -1;
-	}
-	printf("TSOEnabler: found thread pointer read at %p\n", thread_pointer_read);
-
-	// Extract the immediate from the ldr.
-	int tso_offset = (*thread_pointer_read >> 10 & 0xfff) << 3;
-	printf("TSOEnabler: TSO offset is %d\n", tso_offset);
-	return tso_offset;
+	return -1;
 }
 
 static int find_tso_offset(void) {
