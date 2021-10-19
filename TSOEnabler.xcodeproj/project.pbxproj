@@ -70,10 +70,10 @@
 		49758CBC24D2701800315D38 = {
 			isa = PBXGroup;
 			children = (
+				49758CC724D2701800315D38 /* Products */,
 				49758CC824D2701800315D38 /* TSOEnabler */,
 				499A21962660F95500D85600 /* enabletso */,
 				49311DE526610A0000F825FC /* testtso */,
-				49758CC724D2701800315D38 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,7 +182,7 @@
 		49758CBD24D2701800315D38 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					49311DE326610A0000F825FC = {
 						CreatedOnToolsVersion = 12.5;
@@ -256,6 +256,7 @@
 		49311DE826610A0000F825FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X4A9GH5NN2;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -267,6 +268,7 @@
 		49311DE926610A0000F825FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X4A9GH5NN2;
 				ENABLE_HARDENED_RUNTIME = YES;
