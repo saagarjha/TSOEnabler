@@ -5,10 +5,10 @@
 //  Created by Saagar Jha on 5/28/21.
 //
 
-#include <stddef.h>
 #include <errno.h>
 #include <pthread.h>
 #include <stdatomic.h>
+#include <stddef.h>
 #include <sys/sysctl.h>
 
 __attribute__((constructor)) static void set_tso() {
@@ -33,13 +33,12 @@ static void *set_tso_trampoline(void *argument) {
 int overriden_pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg) {
 	size_t context;
 	if ((context = --arena_top)) {
-		context_arena[context] = (pthread_context) { start_routine, arg };
+		context_arena[context] = (pthread_context){start_routine, arg};
 		return pthread_create(thread, attr, set_tso_trampoline, context_arena + context);
 	} else {
 		return EAGAIN;
 	}
 }
-
 
 __attribute__((used, section("__DATA,__interpose"))) static struct {
 	int (*overriden_pthread_create)(pthread_t *, const pthread_attr_t *, void *(*)(void *), void *);
